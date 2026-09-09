@@ -169,6 +169,33 @@
     color: var(--mauve-dim);
   }
 
+  .player {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 1px solid var(--gold-soft);
+    background: var(--ink);
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+
+  .player:hover {
+    border-color: var(--gold);
+    color: var(--cream-solid);
+  }
+
+  @media (max-width: 480px) {
+    .player { top: 16px; right: 16px; width: 38px; height: 38px; }
+  }
+
   .footer {
     margin-top: 44px;
     display: flex;
@@ -212,6 +239,12 @@
 </style>
 </head>
 <body>
+<button class="player" id="playerBtn" aria-label="Lancer la musique">
+  <svg class="icon-play" viewBox="0 0 24 24" width="16" height="16"><path d="M6 4l14 8-14 8V4z" fill="currentColor"/></svg>
+  <svg class="icon-pause" viewBox="0 0 24 24" width="16" height="16" style="display:none;"><path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" fill="currentColor"/></svg>
+</button>
+<audio id="bgAudio" src="musique.mp3" loop preload="none"></audio>
+
 <main>
   <div class="masthead">
     <p class="kicker">Classement</p>
@@ -232,6 +265,33 @@
     <button class="reset" id="resetBtn">Réinitialiser</button>
   </div>
 </main>
+
+<script>
+  const audio = document.getElementById('bgAudio');
+  const playerBtn = document.getElementById('playerBtn');
+  const iconPlay = playerBtn.querySelector('.icon-play');
+  const iconPause = playerBtn.querySelector('.icon-pause');
+
+  playerBtn.addEventListener('click', () => {
+    if (audio.paused) {
+      audio.play().catch(() => {});
+    } else {
+      audio.pause();
+    }
+  });
+
+  audio.addEventListener('play', () => {
+    iconPlay.style.display = 'none';
+    iconPause.style.display = 'block';
+    playerBtn.setAttribute('aria-label', 'Mettre en pause la musique');
+  });
+
+  audio.addEventListener('pause', () => {
+    iconPlay.style.display = 'block';
+    iconPause.style.display = 'none';
+    playerBtn.setAttribute('aria-label', 'Lancer la musique');
+  });
+</script>
 
 <script>
   const STORAGE_KEY = 'top5-ranking';
