@@ -268,7 +268,7 @@
 
 <script>
   const audio = document.getElementById('bgAudio');
-  audio.volume = 0.4;
+  audio.volume = 0.1;
   const playerBtn = document.getElementById('playerBtn');
   const iconPlay = playerBtn.querySelector('.icon-play');
   const iconPause = playerBtn.querySelector('.icon-pause');
