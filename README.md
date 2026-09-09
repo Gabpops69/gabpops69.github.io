@@ -162,6 +162,43 @@
     padding: 4px 9px;
   }
 
+  /* GALLERY — auto-scrolling marquee */
+  .gallery-section{ padding: 70px 0 76px; border-top: 1px solid var(--line); overflow: hidden; }
+  .gallery-mask{
+    position: relative;
+    cursor: grab;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  }
+  .gallery-mask.dragging{ cursor: grabbing; }
+  .marquee-track{
+    display: flex;
+    gap: 22px;
+    width: max-content;
+    will-change: transform;
+  }
+  .marquee-track img{
+    height: 220px;
+    width: 320px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid var(--line);
+    filter: grayscale(65%) brightness(0.85);
+    transition: filter 0.35s ease, transform 0.12s ease-out, box-shadow 0.3s ease;
+    transform: perspective(600px) rotateX(0deg) rotateY(0deg);
+    will-change: transform;
+  }
+  .marquee-track img:hover{
+    filter: grayscale(0%) brightness(1);
+    box-shadow: 0 18px 34px rgba(0,0,0,0.35);
+  }
+  @media (prefers-reduced-motion: reduce){
+    .marquee-track{ transition: none; }
+  }
+  @media (max-width: 560px){
+    .marquee-track img{ height: 160px; width: 230px; }
+  }
+
   /* SKILLS */
   .skills-grid{
     display: grid;
@@ -226,8 +263,8 @@
 
 <header class="hero">
   <div class="wrap">
-    <div class="eyebrow">Développeur — basé à Lyon, dispo pour des projets</div>
-    <h1>Gabriel je construis des interfaces qui tiennent debout.</h1>
+    <div class="eyebrow">Développeur — basé quelque part, dispo pour des projets</div>
+    <h1>[Ton Nom], je construis des interfaces qui tiennent debout.</h1>
     <p class="hero-sub">
       Je conçois et développe des produits web, du prototype rapide à l'application en production.
       Ce qui m'intéresse : les détails qu'on ne remarque que quand ils manquent.
@@ -268,6 +305,32 @@
         Un projet perso, une contribution open-source, ou une expérience technique notable.
       </div>
       <div class="stack"><span>Python</span><span>FastAPI</span><span>Redis</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery-section">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Aperçus</h2>
+      <span class="section-count">captures</span>
+    </div>
+  </div>
+  <div class="gallery-mask">
+    <div class="marquee-track">
+      <img src="https://picsum.photos/seed/proj1/320/220" alt="Aperçu du projet 1">
+      <img src="https://picsum.photos/seed/proj2/320/220" alt="Aperçu du projet 2">
+      <img src="https://picsum.photos/seed/proj3/320/220" alt="Aperçu du projet 3">
+      <img src="https://picsum.photos/seed/proj4/320/220" alt="Aperçu du projet 4">
+      <img src="https://picsum.photos/seed/proj5/320/220" alt="Aperçu du projet 5">
+      <img src="https://picsum.photos/seed/proj6/320/220" alt="Aperçu du projet 6">
+      <!-- duplication pour boucle infinie sans coupure -->
+      <img src="https://picsum.photos/seed/proj1/320/220" alt="Aperçu du projet 1">
+      <img src="https://picsum.photos/seed/proj2/320/220" alt="Aperçu du projet 2">
+      <img src="https://picsum.photos/seed/proj3/320/220" alt="Aperçu du projet 3">
+      <img src="https://picsum.photos/seed/proj4/320/220" alt="Aperçu du projet 4">
+      <img src="https://picsum.photos/seed/proj5/320/220" alt="Aperçu du projet 5">
+      <img src="https://picsum.photos/seed/proj6/320/220" alt="Aperçu du projet 6">
     </div>
   </div>
 </section>
@@ -327,6 +390,73 @@
 </footer>
 
 <script>
+  // Galerie : défilement automatique + glisser-déposer manuel
+  const track = document.querySelector('.marquee-track');
+  const mask = document.querySelector('.gallery-mask');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  let posX = 0;
+  let isHover = false;
+  let isDragging = false;
+  let dragStartX = 0;
+  let dragStartPos = 0;
+  const speed = 0.55; // px par frame
+
+  function tick(){
+    if(!isDragging && !isHover && !reduceMotion){
+      posX -= speed;
+    }
+    const halfWidth = track.scrollWidth / 2;
+    if(halfWidth > 0){
+      if(posX <= -halfWidth) posX += halfWidth;
+      if(posX > 0) posX -= halfWidth;
+    }
+    track.style.transform = `translateX(${posX}px)`;
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+
+  mask.addEventListener('mouseenter', () => { isHover = true; });
+  mask.addEventListener('mouseleave', () => { isHover = false; isDragging = false; mask.classList.remove('dragging'); });
+
+  function startDrag(clientX){
+    isDragging = true;
+    dragStartX = clientX;
+    dragStartPos = posX;
+    mask.classList.add('dragging');
+  }
+  function duringDrag(clientX){
+    if(!isDragging) return;
+    posX = dragStartPos + (clientX - dragStartX);
+  }
+  function endDrag(){
+    isDragging = false;
+    mask.classList.remove('dragging');
+  }
+
+  mask.addEventListener('mousedown', e => startDrag(e.clientX));
+  window.addEventListener('mousemove', e => duringDrag(e.clientX));
+  window.addEventListener('mouseup', endDrag);
+
+  mask.addEventListener('touchstart', e => startDrag(e.touches[0].clientX), { passive: true });
+  mask.addEventListener('touchmove', e => duringDrag(e.touches[0].clientX), { passive: true });
+  mask.addEventListener('touchend', endDrag);
+
+  document.querySelectorAll('.marquee-track img').forEach(img => {
+    const maxTilt = 10;
+    img.addEventListener('mousemove', (e) => {
+      const rect = img.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width;
+      const y = (e.clientY - rect.top) / rect.height;
+      const rotateY = (x - 0.5) * maxTilt * 2;
+      const rotateX = (0.5 - y) * maxTilt * 2;
+      img.style.transform = `perspective(600px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.04)`;
+    });
+    img.addEventListener('mouseleave', () => {
+      img.style.transform = 'perspective(600px) rotateX(0deg) rotateY(0deg) scale(1)';
+    });
+  });
+
   document.querySelectorAll('.project-row').forEach(row => {
     row.addEventListener('click', () => {
       const isOpen = row.classList.contains('open');
