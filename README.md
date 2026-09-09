@@ -263,8 +263,8 @@
 
 <header class="hero">
   <div class="wrap">
-    <div class="eyebrow">Développeur — basé quelque part, dispo pour des projets</div>
-    <h1>[Ton Nom], je construis des interfaces qui tiennent debout.</h1>
+    <div class="eyebrow">Développeur — basé à Lyon, dispo pour des projets</div>
+    <h1>Gabriel, je construis des interfaces qui tiennent debout.</h1>
     <p class="hero-sub">
       Je conçois et développe des produits web, du prototype rapide à l'application en production.
       Ce qui m'intéresse : les détails qu'on ne remarque que quand ils manquent.
