@@ -1,5 +1,3 @@
-[portfolio.html](https://github.com/user-attachments/files/32029372/portfolio.html)
-<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
