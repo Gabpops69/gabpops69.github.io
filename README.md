@@ -193,7 +193,7 @@
   <div class="masthead">
     <p class="kicker">Classement</p>
     <h1>Top 5</h1>
-    <p class="subhead">Cinq emplacements, encore vides. Clique sur une ligne pour écrire un titre et, si tu veux, une courte note.</p>
+    <p class="subhead"></p>
   </div>
 
   <div class="list" id="list">
