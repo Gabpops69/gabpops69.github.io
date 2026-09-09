@@ -243,7 +243,7 @@
   <svg class="icon-play" viewBox="0 0 24 24" width="16" height="16"><path d="M6 4l14 8-14 8V4z" fill="currentColor"/></svg>
   <svg class="icon-pause" viewBox="0 0 24 24" width="16" height="16" style="display:none;"><path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" fill="currentColor"/></svg>
 </button>
-<audio id="bgAudio" src="musique.mp3" loop preload="none"></audio>
+<audio id="bgAudio" src="[No Copyright Music] Chill Lofi Hip Hop Beat FREE Instrumental (Copyright Free) Chillhop Music.mp3" loop preload="none"></audio>
 
 <main>
   <div class="masthead">
