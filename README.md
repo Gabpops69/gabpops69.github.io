@@ -323,12 +323,6 @@
 </body>
 </html>
 
-    --panel: #2f1d33;
-    --panel-light: #3a2540;
-    --gold: #c9a24b;<!DOCTYPE html>
-<html lang="fr">
-<head>[index (1).html](https://github.com/user-attachments/files/32028477/index.1.html)
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Top 5</title>
