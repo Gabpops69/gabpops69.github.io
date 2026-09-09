@@ -1,1 +1,123 @@
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Archives — Top 5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #241726;
+    --panel: #2f1d33;
+    --gold: #c9a24b;
+    --gold-soft: #a98a4a;
+    --cream-solid: #f3eadd;
+    --mauve: #a488a3;
+    --mauve-dim: #6f5a71;
+    --rule: rgba(243, 234, 221, 0.14);
+  }
 
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--ink);
+    color: var(--cream-solid);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+  }
+
+  body {
+    display: flex;
+    justify-content: center;
+    padding: 72px 24px 100px;
+    background-image:
+      radial-gradient(ellipse 900px 500px at 50% -10%, rgba(201, 162, 75, 0.10), transparent);
+  }
+
+  main {
+    width: 100%;
+    max-width: 620px;
+  }
+
+  .masthead {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+
+  .kicker {
+    font-size: 13px;
+    color: var(--mauve);
+    margin: 0 0 14px;
+  }
+
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(36px, 7vw, 50px);
+    line-height: 1.05;
+    margin: 0 0 16px;
+    color: var(--cream-solid);
+  }
+
+  .subhead {
+    font-size: 15.5px;
+    color: var(--mauve);
+    line-height: 1.6;
+    max-width: 380px;
+    margin: 0 auto;
+  }
+
+  .back {
+    margin-top: 26px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .back a {
+    font-size: 13.5px;
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid var(--gold-soft);
+    padding-bottom: 3px;
+  }
+
+  .back a:hover {
+    opacity: 0.72;
+  }
+
+  .empty-panel {
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 60px 20px;
+    text-align: center;
+  }
+
+  .empty-panel p {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 19px;
+    color: var(--mauve);
+    margin: 0;
+  }
+</style>
+</head>
+<body>
+<main>
+  <div class="masthead">
+    <p class="kicker">Catégorie</p>
+    <h1>Archives</h1>
+    <p class="subhead">Les anciens classements viendront ici au fil du temps.</p>
+    <div class="back">
+      <a href="index.html">Retour au classement</a>
+    </div>
+  </div>
+
+  <div class="empty-panel">
+    <p>Rien à afficher pour l'instant.</p>
+  </div>
+</main>
+</body>
+</html>
