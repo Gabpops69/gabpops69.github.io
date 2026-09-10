@@ -252,7 +252,7 @@
 
 <nav>
   <div class="wrap">
-    <div class="logo">Gabriel<span> </span>BARBOSA</div>
+    <div class="logo">G<span>.</span>B</div>
     <div class="navlinks">
       <a href="#projets">Projets</a>
       <a href="#competences">Compétences</a>
