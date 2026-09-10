@@ -281,7 +281,7 @@
     </div>
 
     <div class="project-row" data-open="false">
-      <div class="project-title">Nom du projet un</div>
+      <div class="project-title">https://gabpops69.github.io/novatest</div>
       <div class="project-link">github.com/toi/projet →</div>
       <div class="project-desc">
         Une phrase ou deux sur le problème résolu, le contexte, et ton rôle dans le projet.
@@ -291,7 +291,7 @@
 
     <div class="project-row" data-open="false">
       <div class="project-title">Nom du projet deux</div>
-      <div class="project-link">projet-deux.com →</div>
+      <div class="project-link">site sur l'espace →</div>
       <div class="project-desc">
         Description courte du projet : ce qu'il fait, pour qui, et ce que tu en as appris.
       </div>
