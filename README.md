@@ -282,7 +282,7 @@
 
     <div class="project-row" data-open="false">
       <div class="project-title">Site sur l'espace</div>
-      <div class="project-link">https://gabpops69.github.io/novatest→</div>
+      <div class="project-link">https://gabpops69.github.io/novatest →</div>
       <div class="project-desc">
         Une phrase ou deux sur le problème résolu, le contexte, et ton rôle dans le projet.
       </div>
